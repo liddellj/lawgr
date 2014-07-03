@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>lawgr.js</id>
+        <version>0.0.0</version>
+        <title>lawgr</title>
+        <authors>Jim Liddell</authors>
+        <projectUrl>https://github.com/linn/lawgr</projectUrl>
+        <licenseUrl>https://github.com/linn/lawgr/blob/master/LICENSE</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Simple JavaScript logging library.</description>
+        <tags>javascript logging</tags>
+        <dependencies>
+            <dependency id="jQuery" version="1.5.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\src\lawgr.js" target="content\Scripts\lawgr.js" />
+    </files>
+</package>

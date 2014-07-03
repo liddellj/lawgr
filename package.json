@@ -1,0 +1,35 @@
+{
+  "name": "lawgr",
+  "description": "Simple JavaScript logging library.",
+  "url": "https://github.com/linn/lawgr",
+  "keywords": [
+    "logging"
+  ],
+  "author": {
+    "name": "Jim Liddell",
+    "url": "https://github.com/liddellj"
+  },
+  "contributors": [],
+  "scripts": { },
+  "dependencies": {
+    "jquery": ">=1.5.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-nuget": "~0.1.2",
+    "grunt-shell": "^0.6.4",
+    "grunt-release": "^0.7.0",
+    "grunt-bump": "0.0.13",
+    "grunt-contrib-clean": "^0.5.0"
+  },
+  "main": "src/lawgr.js",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/linn/lawgr"
+  }
+}
