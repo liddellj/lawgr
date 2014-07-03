@@ -1,0 +1,30 @@
+{
+  "name": "lawgr",
+  "description": "Simple JavaScript logging library.",
+  "main": "src/lawgr.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "logging"
+  ],
+  "authors": [
+    "Jim Liddell"
+  ],
+  "dependencies": {
+    "jquery": ">=1.5.0"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/linn/lawgr",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "nuget",
+    "spec",
+    "Gruntfile.js",
+    "package.json",
+    ".travis.yml",
+    ".gitignore"
+  ]
+}
