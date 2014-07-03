@@ -4,7 +4,72 @@
 lawgr
 =====
 
-Simple JavaScript logging library.
+Simple JavaScript logging library. Supports logging to local console as well as a remote endpoint.
+
+## Usage
+### Configuration
+The default configuration includes logging to a target called `local`, which renders messages in the local console.
+
+You can additionally log to a remote endpoint by reconfiguring the `targets` property as follows:
+
+```javascript
+log.config.targets = [ log.defaults.targets.local, log.defaults.targets.remote ];
+```
+
+The `log.defaults.targets.remote` target will post log messages to */logs/* with a body like this:
+
+```javascript
+{
+	level: "error",
+	message: "Uncaught Error: Oh noes!",
+	sender: "some-app",
+	stack: {
+		context: [
+			"var someFuncName = function() {",
+			"    throw new Error('Oh Noes');",
+			"};"
+		],
+		func: "someFuncName",
+		line: 2,
+		url: "http://blah.com/scripts/lib.js"
+    },
+	url: "/"
+	useragent: "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36"
+}
+```
+
+The `sender` property is configured as follows:
+
+```javascript
+log.config.sender = 'some-app';
+```
+
+The `stack` property is only included if available. Stack traces are obtained through [TraceKit](https://github.com/occ/TraceKit).
+
+You can also implement your own target(s) by providing a function with the following signature:
+
+```javascript
+function (level, message, stack)
+```
+
+`level` will be one of *debug*, *info*, *warning*, *error* or *critical*. `message` is the log message. `stack` corresponds to the `stack` property in the example above.
+
+### Logging
+The API for logging messages is simple:
+
+```javascript
+log.debug('This is a debug thing');
+log.info('This is an informational thing');
+log.warning('This is a warning thing');
+log.error('This is an error thing');
+log.critical('This is a critical thing');
+```
+
+Unhandled errors are automatically caught and logged as an error. To ensure you get the best stack trace possible, you should throw errors like this:
+
+```javascript
+throw new Error('Oh noes!');
+```
 
 ## Installation
 ### [Bower](http://bower.io/search/?q=lawgr)
