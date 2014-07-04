@@ -8,11 +8,7 @@ Simple JavaScript logging library. Supports logging to local console as well as 
 
 ## Usage
 ### Configuration
-Lawgr has the concept of logging _targets_, a _target_ being a function which is be called when any of the logging functions are called. The default configuration includes a target called `local`, which renders messages to the local console like this:
-
-<div>
-<span style="padding-left: 3px; padding-right: 3px; margin-top: 1px; margin-bottom: 1px; color: #fff; border-radius: 2px; background-color: #3F6833; font-weight: bold;">debug</span> <span style="'color: #000'">This is a debug thing</span>
-</div>
+Lawgr has the concept of logging _targets_, a _target_ being a function which is be called when any of the logging functions are called. The default configuration includes a target called `local`, which renders messages to the local console.
 
 A remote target is also provided for sending log messages to a remote endpoint. To make use of it you can reconfigure the `targets` property as follows:
 
