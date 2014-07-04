@@ -8,9 +8,9 @@ Simple JavaScript logging library. Supports logging to local console as well as 
 
 ## Usage
 ### Configuration
-Lawgr has the concept of logging _targets_. A target being a function which will be called when any of the logging functions are called. The default configuration includes a target called `local`, which renders messages in the local console.
+Lawgr has the concept of logging _targets_, a _target_ being a function which is be called when any of the logging functions are called. The default configuration includes a target called `local`, which renders messages to the local console.
 
-A remote target is also available for sending log messages to a remote endpoint. To make use of it you can reconfigure the `targets` property as follows:
+A remote target is also provided for sending log messages to a remote endpoint. To make use of it you can reconfigure the `targets` property as follows:
 
 ```javascript
 log.config.targets = [ log.defaults.targets.local, log.defaults.targets.remote ];
@@ -64,9 +64,16 @@ log.info('This is an informational thing');
 log.warning('This is a warning thing');
 log.error('This is an error thing');
 log.critical('This is a critical thing');
+
+// log.error and log.critical also accept an Error object
+var error = new Error('Oh noes!');
+
+log.error(error);
+log.critical(error);
+
 ```
 
-Unhandled errors (`window.onerror`) are automatically caught and logged as an error. However, once an error hits window.onerror, the stack trace is limited to a single frame. For better stack traces, use `try`-`catch` blocks withing your code:
+Unhandled errors (`window.onerror`) are automatically caught and logged as an error. However, once an error hits window.onerror, the stack trace is limited to a single frame. For better stack traces, use `try`-`catch` blocks within your code:
 
 ```javascript
 try {
