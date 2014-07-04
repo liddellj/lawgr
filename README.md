@@ -8,9 +8,9 @@ Simple JavaScript logging library. Supports logging to local console as well as 
 
 ## Usage
 ### Configuration
-The default configuration includes logging to a target called `local`, which renders messages in the local console.
+Lawgr has the concept of logging _targets_. A target being a function which will be called when any of the logging functions are called. The default configuration includes a target called `local`, which renders messages in the local console.
 
-You can additionally log to a remote endpoint by reconfiguring the `targets` property as follows:
+A remote target is also available for sending log messages to a remote endpoint. To make use of it you can reconfigure the `targets` property as follows:
 
 ```javascript
 log.config.targets = [ log.defaults.targets.local, log.defaults.targets.remote ];
@@ -21,9 +21,9 @@ The `log.defaults.targets.remote` target will post log messages to */logs/* with
 ```javascript
 {
 	level: "error",
-	message: "Uncaught Error: Oh noes!",
+	message: "Oh noes!",
 	sender: "some-app",
-	stack: {
+	stack: [{
 		context: [
 			"var someFuncName = function() {",
 			"    throw new Error('Oh Noes');",
@@ -31,8 +31,9 @@ The `log.defaults.targets.remote` target will post log messages to */logs/* with
 		],
 		func: "someFuncName",
 		line: 2,
+		column: 12,
 		url: "http://blah.com/scripts/lib.js"
-    },
+    }],
 	url: "/"
 	useragent: "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36"
 }
@@ -65,7 +66,17 @@ log.error('This is an error thing');
 log.critical('This is a critical thing');
 ```
 
-Unhandled errors are automatically caught and logged as an error. To ensure you get the best stack trace possible, you should throw errors like this:
+Unhandled errors (`window.onerror`) are automatically caught and logged as an error. However, once an error hits window.onerror, the stack trace is limited to a single frame. For better stack traces, use `try`-`catch` blocks withing your code:
+
+```javascript
+try {
+	something();
+catch (e) {
+	log.error(e);
+}
+```
+
+When throwing errors, create an instance of `Error` rather than using a `string`:
 
 ```javascript
 throw new Error('Oh noes!');

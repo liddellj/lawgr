@@ -37,9 +37,9 @@
             data: data
         }).fail(function () {
             if (config.logRemoteFailureToConsole) {
-		        local('error', 'Error posting log to server.');
+                local('error', 'Error posting log to server.');
             }
-		});
+        });
     };
 
     // define the mapping between levels and console functions
@@ -77,7 +77,15 @@
         }
     };
 
-    var write = function (level, message, stack) {
+    var write = function (level, message) {
+        var stack;
+
+        if (message.stack && message.message) {
+            var e = TraceKit.computeStackTrace(message);
+            message = e.message;
+            stack = e.stack;
+        }
+
         var i;
 
         for (i = 0; i < config.targets.length; i++) {
@@ -87,18 +95,9 @@
 
     // catch unhandled errors and invoke remote target. Don't invoke local
     // target because the browser tends to show these in the console anyway
-    var errorHandler = function (error) {
-        try {
-            if (!error.stack) {
-                error.stack = (new Error('force-added stack')).stack;
-                if (error.stack) {
-                    error.stack = error.stack.toString();
-                }
-            }
-        } catch (e) { }
-
+    var errorHandler = function (e) {
         // TODO: What if the remote target is not enabled?
-        remote('error', error.message, error.stack[0]);
+        remote('error', e.message, e.stack);
     };
 
     TraceKit.report.subscribe(errorHandler);
@@ -122,11 +121,11 @@
         warning: function(message) {
             write('warning', message);
         },
-        error: function(message) {
-            write('error', message);
+        error: function(e) {
+            write('error', e);
         },
-        critical: function(message) {
-            write('critical', message);
+        critical: function(e) {
+            write('critical', e);
         }
     };
 }));
