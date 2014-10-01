@@ -1,4 +1,5 @@
 [![Build Status](http://img.shields.io/travis/linn/lawgr/master.svg?style=flat)](https://travis-ci.org/linn/lawgr)
+[![Bower Version](http://img.shields.io/bower/v/lawgr.svg?style=flat)](http://bower.io/search/?q=lawgr)
 [![npm Version](http://img.shields.io/npm/v/lawgr.svg?style=flat)](https://www.npmjs.org/package/lawgr)
 [![Nuget Version](http://img.shields.io/nuget/v/lawgr.js.svg?style=flat)](https://www.nuget.org/packages/lawgr.js/)
 lawgr
