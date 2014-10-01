@@ -91,7 +91,7 @@ throw new Error('Oh noes!');
 ```
 
 ## Installation
-### [Bower](http://bower.io/search/?q=lawgr)
+### [Bower](http://bower.io/search/?q=lawgr) [![Bower Version](http://img.shields.io/bower/v/lawgr.svg?style=flat)](http://bower.io/search/?q=lawgr)
 ```
 bower install lawgr
 ```
